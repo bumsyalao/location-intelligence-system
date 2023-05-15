@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-
+import userRoutes from './server/user/routes';
 const mongoose = require('mongoose');
 require('dotenv').config();
 
@@ -30,6 +30,8 @@ console.log('Connected to MongoDB');
 app.get("/", (req: Request, res: Response) => {
     res.status(200).send("Hello World!");
 })
+app.use('/user', userRoutes);
+
 // Start the server
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
