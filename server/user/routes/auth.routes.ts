@@ -1,7 +1,8 @@
-import express from 'express';
-import { signUp, signIn, signInWithGoogle } from '../controllers/auth.controller';
+import { signUp, signIn } from '../controllers/auth.controller';
+import { Router } from 'express';
 
-const router = express.Router();
+const router = Router();
+
 
 // Sign up route
 router.post('/signup', signUp);
@@ -10,6 +11,6 @@ router.post('/signup', signUp);
 router.post('/signin', signIn);
 
 // Sign in with Google route
-router.post('/google', signInWithGoogle);
+// router.post('/google', signInWithGoogle);
 
 export default router;
