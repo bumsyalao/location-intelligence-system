@@ -1,7 +1,14 @@
-import router from './auth.routes';
-import authRoutes from './auth.routes';
+import { signUp, signIn } from '../controllers/auth.controller';
+import { Router } from 'express';
 
-//user routes 
-router.use('/auth', authRoutes);
+const router = Router();
+
+
+// Sign up route
+router.post('/signup', signUp);
+
+// Sign in route
+router.post('/signin', signIn);
+
 
 export default router;

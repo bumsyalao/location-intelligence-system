@@ -1,6 +1,11 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const secret = process.env.SECRET || '';
 
 import User, { IUser } from '../models/user.model';
 
@@ -26,8 +31,7 @@ export const signUp = async (req: Request, res: Response) => {
 
         return res.status(201).json({ message: 'User signed up successfully' });
     } catch (error) {
-        console.error('Error signing up:', error);
-        return res.status(500).json({ message: 'Internal server error' });
+        return res.status(500).json({ message: 'Internal server error', error });
     }
 };
 
@@ -51,12 +55,11 @@ export const signIn = async (req: Request, res: Response) => {
         }
 
         // Generate JWT token
-        const token = jwt.sign({ userId: user._id }, 'secret', { expiresIn: '1d' });
+        const token = jwt.sign({ userId: user._id }, secret, { expiresIn: '1d' });
 
         return res.json({ token });
     } catch (error) {
-        console.error('Error signing in:', error);
-        return res.status(500).json({ message: 'Internal server error' });
+        return res.status(500).json({ message: 'Internal server error', error });
     }
 };
 
