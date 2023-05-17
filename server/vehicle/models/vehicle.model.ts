@@ -7,6 +7,8 @@ export interface IVehicle extends Document {
         lng: number;
     };
     status: string;
+    createdBy: string;
+    updatedBy: string;
 }
 
 const vehicleSchema: Schema = new Schema({
@@ -28,8 +30,9 @@ const vehicleSchema: Schema = new Schema({
         type: String,
         required: true,
     },
+    createdBy: { type: String, required: true },
+    updatedBy: { type: String, required: true },
 });
 
-const Vehicle = mongoose.model<IVehicle>('Vehicle', vehicleSchema);
+export default mongoose.model<IVehicle>('Vehicle', vehicleSchema);
 
-export default Vehicle;

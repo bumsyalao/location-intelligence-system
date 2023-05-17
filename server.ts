@@ -1,11 +1,14 @@
 import express, { Request, Response } from 'express';
-import userRoutes from './server/user/routes';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import winston from "winston";
+
+import { authenticateJWT } from './server/shared/middleware/authenticateJWT';
+import userRoutes from './server/user/routes';
+import vehicleRoutes from './server/vehicle/routes';
 
 const mongoose = require('mongoose');
-const winston = require("winston");
 
 dotenv.config();
 
@@ -64,6 +67,7 @@ app.get("/", (req: Request, res: Response) => {
     res.status(200).send("Hello World!");
 })
 app.use('/user', userRoutes);
+app.use('/vehicles', authenticateJWT, vehicleRoutes);
 
 // Start the server
 app.listen(port, () => {
