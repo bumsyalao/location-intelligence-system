@@ -3,8 +3,6 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import winston from "winston";
-
-import { authenticateJWT } from './server/shared/middleware/authenticateJWT';
 import userRoutes from './server/user/routes';
 import vehicleRoutes from './server/vehicle/routes';
 
@@ -67,7 +65,7 @@ app.get("/", (req: Request, res: Response) => {
     res.status(200).send("Hello World!");
 })
 app.use('/user', userRoutes);
-app.use('/vehicles', authenticateJWT, vehicleRoutes);
+app.use('/vehicles', vehicleRoutes);
 
 // Start the server
 app.listen(port, () => {

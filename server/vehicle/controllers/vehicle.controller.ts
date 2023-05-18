@@ -2,21 +2,23 @@ import { Request, Response } from 'express';
 import Vehicle from '../models/vehicle.model';
 import { decodeToken } from '../../shared/middleware/authenticateJWT';
 
+
+// Get user email from JWT token
+// const token = req.headers.authorization;
+// const decodedToken = await decodeToken(token || '');
+
+
 // Create a new vehicle
 export const createVehicle = async (req: Request, res: Response) => {
     try {
         const { name, location, status } = req.body;
 
-        // Get user email from JWT token
-        const token = req.headers.authorization;
-        const decodedToken = await decodeToken(token || '');
-
         const newVehicle = new Vehicle({
             name,
             location,
             status,
-            createdBy: decodedToken?.userId,
-            updatedBy: decodedToken?.userId,
+            // createdBy: decodedToken?.userId,
+            // updatedBy: decodedToken?.userId,
         });
 
         const savedVehicle = await newVehicle.save();
@@ -33,9 +35,7 @@ export const updateVehicle = async (req: Request, res: Response) => {
         const { vehicleId } = req.params;
         const { name, location, status } = req.body;
 
-        // Get user email from JWT token
-        const token = req.headers.authorization;
-        const decodedToken = await decodeToken(token || '');
+
 
         const updatedVehicle = await Vehicle.findByIdAndUpdate(
             vehicleId,
@@ -43,7 +43,7 @@ export const updateVehicle = async (req: Request, res: Response) => {
                 name,
                 location,
                 status,
-                updatedBy: decodedToken?.userId, // Save user email to updatedBy field
+                // updatedBy: decodedToken?.userId, // Save user email to updatedBy field
             },
             { new: true }
         );
@@ -89,10 +89,6 @@ export const getAllVehicles = async (req: Request, res: Response) => {
 export const deleteVehicle = async (req: Request, res: Response) => {
     try {
         const { vehicleId } = req.params;
-
-        // Get user email from JWT token
-        const token = req.headers.authorization;
-        const decodedToken: any = await decodeToken(token || '');
 
         const deletedVehicle = await Vehicle.findByIdAndDelete(vehicleId);
 
