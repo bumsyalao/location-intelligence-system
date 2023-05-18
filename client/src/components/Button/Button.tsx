@@ -1,14 +1,18 @@
 import React from 'react';
 
-type ButtonProps = {
-};
+interface ButtonProps {
+    buttonType: 'primary' | 'secondary' | 'success' | 'danger';
+    type: 'button' | 'submit' | 'reset' | undefined;
+    onClick?: () => void;
+    disabled?: boolean;
+    children: React.ReactNode
+}
 
-const Button: React.FC<ButtonProps> = () => {
-
+const Button: React.FC<ButtonProps> = ({ type, buttonType, onClick, disabled, children }) => {
     return (
-        <div>
-            <h1>Button</h1>
-        </div>
+        <button className={`button ${buttonType}`} type={type} onClick={onClick} disabled={disabled}>
+            {children}
+        </button>
     );
 };
 
