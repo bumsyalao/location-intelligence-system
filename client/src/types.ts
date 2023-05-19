@@ -1,9 +1,9 @@
 interface Vehicle {
-    id: string;
+    id?: string;
     name: string;
     location: {
-        latitude: number;
-        longitude: number;
+        lat: number;
+        lng: number;
     };
     status: 'active' | 'inactive';
 }

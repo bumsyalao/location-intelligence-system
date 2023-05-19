@@ -2,28 +2,21 @@ import React, { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { useDispatch } from 'react-redux';
 import useCreateVehicle from '../../hooks/useCreateVehicle';
 import Button from '../Button/Button';
+import Vehicle from '../../types';
 
 interface VehicleFormProps {
-    onSubmit: SubmitHandler<VehicleFormData>;
+    onSubmit: SubmitHandler<Vehicle>;
 }
 
-interface VehicleFormData {
-    name: string;
-    location: {
-        latitude: number;
-        longitude: number;
-    };
-    status: string;
-}
+
 
 const schema = yup.object().shape({
     name: yup.string().required('Name is required'),
     location: yup.object().shape({
-        latitude: yup.number().required('Latitude is required'),
-        longitude: yup.number().required('Longitude is required'),
+        lat: yup.number().required('Latitude is required'),
+        lng: yup.number().required('Longitude is required'),
     }),
     status: yup.string().required('Status is required'),
 });
@@ -36,21 +29,17 @@ const VehicleForm: React.FC<VehicleFormProps> = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<VehicleFormData>({
+    } = useForm<Vehicle>({
         resolver: yupResolver(schema),
     });
 
-    const dispatch = useDispatch();
 
     useEffect(() => {
         // You can perform additional actions or side effects here
     }, []);
 
-    const handleFormSubmit: SubmitHandler<VehicleFormData> = (data) => {
-        if (error) {
-            dispatch({ type: 'CREATE_VEHICLE_FAILURE', error });
-        }
-        dispatch({ type: 'CREATE_VEHICLE_SUCCESS', payload: createVehicle(data) });
+    const handleFormSubmit: SubmitHandler<Vehicle> = (data) => {
+        createVehicle(data);
 
     };
 
@@ -65,14 +54,14 @@ const VehicleForm: React.FC<VehicleFormProps> = () => {
 
                 <div>
                     <label>Latitude</label>
-                    <input type="number" {...register('location.latitude')} />
-                    {errors.location?.latitude && <p>{errors.location.latitude.message}</p>}
+                    <input type="number" {...register('location.lat')} />
+                    {errors.location?.lat && <p>{errors.location.lat.message}</p>}
                 </div>
 
                 <div>
                     <label>Longitude</label>
-                    <input type="number" {...register('location.longitude')} />
-                    {errors.location?.longitude && <p>{errors.location.longitude.message}</p>}
+                    <input type="number" {...register('location.lng')} />
+                    {errors.location?.lng && <p>{errors.location.lng.message}</p>}
                 </div>
 
                 <div>

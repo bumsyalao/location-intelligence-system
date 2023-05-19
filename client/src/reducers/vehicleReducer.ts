@@ -1,5 +1,5 @@
 import { Reducer } from 'redux';
-import Vehicle from './types';
+import Vehicle from '../types';
 
 // Define the vehicle state type
 export interface VehicleState {
