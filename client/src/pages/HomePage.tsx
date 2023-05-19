@@ -1,4 +1,7 @@
 import React from 'react';
+import SplitLayout from '../layout/SplitLayout';
+import GoogleMapsLayout from '../layout/GoogleMapsLayout';
+import SidebarLayout from '../layout/SidebarLayout';
 
 type HomePageProps = {
 };
@@ -7,9 +10,12 @@ const HomePage: React.FC<HomePageProps> = () => {
 
 
     return (
-        <div>
-            <h1>Home Page</h1>
-        </div>
+        <>
+            <SplitLayout>
+                <SidebarLayout />
+                <GoogleMapsLayout />
+            </SplitLayout>
+        </>
     );
 };
 

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
-import dotenv from 'dotenv';
-dotenv.config();
 
-const API_KEY = process.env.API_KEY || '';
-const GoogleMapsScreen = () => {
+
+
+const GOOGLE_MAP_API_KEY = process.env.REACT_APP_GOOGLE_MAP_API_KEY || '';
+
+
+const GoogleMapsLayout = () => {
     const [location, setLocation] = useState({ lat: 0, lng: 0 });
 
     const handleLocationChange = (event: any) => {
@@ -13,9 +15,9 @@ const GoogleMapsScreen = () => {
     };
 
     return (
-        <LoadScript googleMapsApiKey={API_KEY}>
+        <LoadScript googleMapsApiKey={GOOGLE_MAP_API_KEY}>
             <GoogleMap
-                mapContainerStyle={{ height: '400px', width: '100%' }}
+                mapContainerStyle={{ height: '100vh', width: '80%' }}
                 center={location}
                 zoom={8}
                 onClick={handleLocationChange}
@@ -26,4 +28,4 @@ const GoogleMapsScreen = () => {
     );
 };
 
-export default GoogleMapsScreen;
+export default GoogleMapsLayout;

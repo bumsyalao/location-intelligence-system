@@ -1,0 +1,50 @@
+$primary-color: #3333FF;
+
+
+.split-layout {
+    display: flex;
+    min-height: 100vh;
+
+}
+
+
+.sidebar {
+    background: #fff9ff;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+
+
+    @media screen and (min-width: 800px) {
+        .hideOnDesktop {
+            display: none;
+        }
+    }
+}
+
+
+
+@media screen and (max-width: 800px) {
+
+    .hideOnMobile {
+        display: none;
+    }
+
+    .split-layout {
+        display: flex;
+        flex-direction: column;
+
+        .sidebar {
+            width: auto;
+            height: 56px;
+
+            &.showSidebar {
+                .sidebar-links {
+                    visibility: visible;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+}
