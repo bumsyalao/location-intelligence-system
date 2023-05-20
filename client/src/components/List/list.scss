@@ -1,0 +1,23 @@
+.list-item {
+    display: flex;
+    align-items: center;
+    // margin-bottom: 10px;
+    border-bottom: 1px solid #E5E9F0;
+    padding: 20px 20px;
+
+    &:hover {
+        background-color: #F5F5F5;
+    }
+}
+
+.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.text {
+    font-size: 12px;
+}

@@ -1,0 +1,32 @@
+.search {
+    display: flex;
+    justify-content: space-around;
+
+    button {
+        margin-left: 10px;
+        border: none;
+        background-color: #fff;
+        box-shadow: 1px 3px 5px #8888;
+    }
+}
+
+.search-bar {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    box-shadow: 1px 3px 5px #8888;
+    border-radius: 4px;
+    background: #fff;
+    padding: 10px;
+
+    svg {
+        color: gray;
+    }
+
+    input[type='text'] {
+        flex: 1;
+        border: none;
+        outline: none;
+    }
+
+}

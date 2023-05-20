@@ -1,5 +1,5 @@
 interface Vehicle {
-    id?: string;
+    _id?: string;
     name: string;
     location: {
         lat: number;
