@@ -2,7 +2,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import Vehicle from '../types';
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const useCreateVehicle = () => {
     const [loading, setLoading] = useState(false);
@@ -21,9 +22,11 @@ const useCreateVehicle = () => {
             // Dispatch the action to update the Redux store
             dispatch({ type: 'CREATE_VEHICLE_SUCCESS', payload: data });
             setSuccess(true);
+            toast.info('Successfully created vehicle');
         } catch (err: any) {
-            dispatch({ type: 'CREATE_VEHICLE_FAILURE', error: err });
+            dispatch({ type: 'CREATE_VEHICLE_FAILURE', error: err.message });
             setError(err.message || 'An error occurred');
+            toast.error(error);
         } finally {
             setLoading(false);
         }

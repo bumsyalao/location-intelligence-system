@@ -1,7 +1,7 @@
 .list-item {
     display: flex;
     align-items: center;
-    // margin-bottom: 10px;
+    justify-content: space-between;
     border-bottom: 1px solid #E5E9F0;
     padding: 20px 20px;
 
@@ -20,4 +20,21 @@
 
 .text {
     font-size: 12px;
+}
+
+.list-icon {
+    float: right;
+
+    button {
+        width: 10px;
+        height: 10px;
+        background-color: transparent;
+        border: none;
+        transition: transform 0.3s;
+
+        &:hover {
+            transform: scale(1.5);
+        }
+
+    }
 }

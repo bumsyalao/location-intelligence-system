@@ -1,24 +1,26 @@
 import { Request, Response } from 'express';
 import Vehicle from '../models/vehicle.model';
-import { decodeToken } from '../../shared/middleware/authenticateJWT';
-
-
-// Get user email from JWT token
-// const token = req.headers.authorization;
-// const decodedToken = await decodeToken(token || '');
 
 
 // Create a new vehicle
+
 export const createVehicle = async (req: Request, res: Response) => {
     try {
         const { name, location, status } = req.body;
+
+        // Check if a vehicle with the same fields already exists
+        const existingVehicle = await Vehicle.findOne({
+            name,
+            status
+        });
+        if (existingVehicle) {
+            return res.status(409).json({ error: 'Vehicle with the same fields already exists' });
+        }
 
         const newVehicle = new Vehicle({
             name,
             location,
             status,
-            // createdBy: decodedToken?.userId,
-            // updatedBy: decodedToken?.userId,
         });
 
         const savedVehicle = await newVehicle.save();
@@ -28,6 +30,7 @@ export const createVehicle = async (req: Request, res: Response) => {
         res.status(500).json({ error: 'Failed to create a new vehicle' });
     }
 };
+
 
 // Update a vehicle
 export const updateVehicle = async (req: Request, res: Response) => {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchBar from '../components/SearchBar/SearchBar';
 import ListItem from '../components/List/ListItem';
 import { useSelector } from 'react-redux';
@@ -11,6 +11,14 @@ const SidebarLayout = () => {
     // const openSidebar = () => setShowSidebar(!showSidebar);
     const vehichlesData = useSelector((state: RootState) => state.vehicles?.vehicles);
     const [selectedVehicle, setSelectedVehicle] = useState({ ...vehichlesData[0] });
+
+    const handleOnSelectVehicle = (event: Event) => {
+        const target = event.target as HTMLInputElement;
+        console.log(target?.value, '======');
+        // const selectedVehicle = vehichlesData.find((vehicle: Vehicle) => vehicle.name === target.value);
+        // setSelectedVehicle(selectedVehicle);
+    }
+
     return (
 
         <div className={`sidebar ${showSidebar ? 'showSidebar' : ''}`} >

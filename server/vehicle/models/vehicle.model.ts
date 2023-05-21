@@ -30,9 +30,9 @@ const vehicleSchema: Schema = new Schema({
         type: String,
         required: true,
     },
-    // createdBy: { type: String, required: true },
-    // updatedBy: { type: String, required: true },
+
 });
+vehicleSchema.index({ name: 1, location: 1, status: 1 }, { unique: true });
 
 export default mongoose.model<IVehicle>('Vehicle', vehicleSchema);
 

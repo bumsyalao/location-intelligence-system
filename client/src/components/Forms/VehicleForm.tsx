@@ -7,7 +7,9 @@ import Button from '../Button/Button';
 import Vehicle from '../../types';
 
 interface VehicleFormProps {
-    onSubmit: SubmitHandler<Vehicle>;
+    onSubmit?: SubmitHandler<Vehicle>;
+    vehicle?: Vehicle;
+    buttonText: string;
 }
 
 
@@ -21,7 +23,7 @@ const schema = yup.object().shape({
     status: yup.string().required('Status is required'),
 });
 
-const VehicleForm: React.FC<VehicleFormProps> = () => {
+const VehicleForm: React.FC<VehicleFormProps> = ({ buttonText, vehicle }) => {
 
     const { loading, error, success, createVehicle } = useCreateVehicle();
 
@@ -46,25 +48,27 @@ const VehicleForm: React.FC<VehicleFormProps> = () => {
     return (
         <div className='vehicle-form'>
             <form onSubmit={handleSubmit(handleFormSubmit)}>
-                <div>
+                <div className='form-input'>
                     <label>Name</label>
                     <input type="text" {...register('name')} />
                     {errors.name && <p>{errors.name.message}</p>}
                 </div>
 
-                <div>
+                <div className='form-input'>
                     <label>Latitude</label>
-                    <input type="number" {...register('location.lat')} />
+                    <input type="number" min="-90" step="0.00001"
+                        max="90" {...register('location.lat')} />
                     {errors.location?.lat && <p>{errors.location.lat.message}</p>}
                 </div>
 
-                <div>
+                <div className='form-input'>
                     <label>Longitude</label>
-                    <input type="number" {...register('location.lng')} />
+                    <input type="number" min="-90" step="0.000001"
+                        max="90"{...register('location.lng')} />
                     {errors.location?.lng && <p>{errors.location.lng.message}</p>}
                 </div>
 
-                <div>
+                <div className='form-input'>
                     <label>Status</label>
                     <select {...register('status')}>
                         <option value="">Select status</option>
@@ -74,7 +78,7 @@ const VehicleForm: React.FC<VehicleFormProps> = () => {
                     {errors.status && <p>{errors.status.message}</p>}
                 </div>
 
-                <Button type="submit" buttonType="primary">Submit</Button>
+                <Button type="submit" buttonType="primary" >{buttonText}</Button>
             </form>
         </div>
     );
