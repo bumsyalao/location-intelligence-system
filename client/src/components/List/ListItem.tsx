@@ -47,7 +47,7 @@ const ListItem: React.FC<ListItemProps> = ({ color, text, vehicleId, onSelectVeh
             </div>
             <div className='card-modal'>
                 {/* modal for vehicle data */}
-                <Modal isOpen={isModalOpen} onClose={closeModal} childComponent={<Card vehicle={selectedVehicleData} />} />
+                {/* <Modal isOpen={isModalOpen} onClose={closeModal} childComponent={<Card vehicle={selectedVehicleData} />} /> */}
 
             </div>
         </>
