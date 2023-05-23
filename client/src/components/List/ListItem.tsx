@@ -4,8 +4,7 @@ import { BiShow } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import Modal from '../Modal/Modal';
-import Card from '../Card/Card';
-import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
+import VehicleCard from '../Card/VehicleCard';
 interface ListItemProps {
     color: string;
     text: string;
@@ -40,14 +39,13 @@ const ListItem: React.FC<ListItemProps> = ({ color, text, vehicleId, onSelectVeh
                 </div>
                 <div className='list-icon'>
                     <Button buttonType='icon' onClick={onClickVehicle} ><BiShow /></Button>
-                    {/* <Button buttonType='icon'><AiOutlineEdit /></Button>
-                <Button buttonType='icon'><AiOutlineDelete /></Button> */}
+
                 </div>
 
             </div>
             <div className='card-modal'>
                 {/* modal for vehicle data */}
-                {/* <Modal isOpen={isModalOpen} onClose={closeModal} childComponent={<Card vehicle={selectedVehicleData} />} /> */}
+                <Modal isOpen={isModalOpen} onClose={closeModal} childComponent={<VehicleCard vehicle={selectedVehicleData} />} />
 
             </div>
         </>

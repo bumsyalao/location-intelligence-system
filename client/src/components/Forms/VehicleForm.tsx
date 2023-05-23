@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import useCreateVehicle from '../../hooks/useCreateVehicle';
+import useUpdateVehicle from '../../hooks/useUpdateVehicle';
 import Button from '../Button/Button';
 import Vehicle from '../../types';
 
@@ -11,8 +12,6 @@ interface VehicleFormProps {
     vehicle?: Vehicle;
     buttonText: string;
 }
-
-
 
 const schema = yup.object().shape({
     name: yup.string().required('Name is required'),
@@ -25,7 +24,8 @@ const schema = yup.object().shape({
 
 const VehicleForm: React.FC<VehicleFormProps> = ({ buttonText, vehicle }) => {
 
-    const { loading, error, success, createVehicle } = useCreateVehicle();
+    const { createVehicle } = useCreateVehicle();
+    const { updateVehicle } = useUpdateVehicle();
 
     const {
         register,
@@ -33,15 +33,23 @@ const VehicleForm: React.FC<VehicleFormProps> = ({ buttonText, vehicle }) => {
         formState: { errors },
     } = useForm<Vehicle>({
         resolver: yupResolver(schema),
+        defaultValues: {
+            name: vehicle?.name,
+            location: {
+                lat: vehicle?.location.lat,
+                lng: vehicle?.location.lng
+            },
+            status: vehicle?.status
+        },
     });
 
-
-    useEffect(() => {
-        // You can perform additional actions or side effects here
-    }, []);
-
     const handleFormSubmit: SubmitHandler<Vehicle> = (data) => {
-        createVehicle(data);
+        if (buttonText === 'Update vehicle') {
+            updateVehicle(vehicle?._id!, data);
+        } else {
+            createVehicle(data);
+
+        }
 
     };
 
@@ -56,15 +64,15 @@ const VehicleForm: React.FC<VehicleFormProps> = ({ buttonText, vehicle }) => {
 
                 <div className='form-input'>
                     <label>Latitude</label>
-                    <input type="number" min="-90" step="0.00001"
-                        max="90" {...register('location.lat')} />
+                    <input type="number" min="-180" step="0.000000000000001"
+                        max="180" {...register('location.lat')} />
                     {errors.location?.lat && <p>{errors.location.lat.message}</p>}
                 </div>
 
                 <div className='form-input'>
                     <label>Longitude</label>
-                    <input type="number" min="-90" step="0.000001"
-                        max="90"{...register('location.lng')} />
+                    <input type="number" min="-180" step="0.000000000000001"
+                        max="180"{...register('location.lng')} />
                     {errors.location?.lng && <p>{errors.location.lng.message}</p>}
                 </div>
 

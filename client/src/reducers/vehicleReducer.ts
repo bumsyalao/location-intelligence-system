@@ -134,7 +134,7 @@ const vehicleReducer: Reducer<VehicleState, VehicleActions> = (
         case ActionTypes.UPDATE_VEHICLE_SUCCESS:
             return {
                 ...state,
-                loading: false,
+                loading: true,
                 vehicles: [...state.vehicles, action.payload],
                 error: null,
             };

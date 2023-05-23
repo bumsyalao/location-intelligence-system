@@ -20,12 +20,12 @@ const GoogleMapsLayout = () => {
         setLocation({ lat: selectedVehicleData?.location?.lat, lng: selectedVehicleData?.location?.lng })
     }, [selectedVehicleData])
 
-    const { isLoaded, loadError } = useJsApiLoader({
-        googleMapsApiKey: GOOGLE_MAP_API_KEY,
-    });
-    const onLoad = (marker: any) => {
-        console.log('marker: ', marker)
-    }
+    // const { isLoaded, loadError } = useJsApiLoader({
+    //     googleMapsApiKey: GOOGLE_MAP_API_KEY,
+    // });
+    // const onLoad = (marker: any) => {
+    //     console.log('marker: ', marker)
+    // }
 
     return (
         <LoadScript googleMapsApiKey={GOOGLE_MAP_API_KEY} region='AE'>
@@ -35,7 +35,6 @@ const GoogleMapsLayout = () => {
                 zoom={15}
                 onClick={handleLocationChange}
             >
-                {/* 
                 <Marker
                     icon={{
                         path: 'https://res.cloudinary.com/dcpfdxsly/image/upload/v1684780805/location-marker_ojsagh.png',
@@ -44,10 +43,6 @@ const GoogleMapsLayout = () => {
                     }}
                     zIndex={1000}
                     visible={true}
-                    position={location}
-                /> */}
-                <Marker
-                    onLoad={onLoad}
                     position={location}
                 />
             </GoogleMap>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import Vehicle from '../types';
@@ -11,29 +11,31 @@ const useFetchVehicles = () => {
     const dispatch = useDispatch();
 
 
+    const fetchVehicles = async () => {
+        dispatch({ type: 'FETCH_VEHICLES_REQUEST' });
+
+        try {
+            const response = await axios.get('/vehicles');
+            const vehiclesData = response.data;
+            setVehicles(vehiclesData);
+            dispatch({ type: 'FETCH_VEHICLES_SUCCESS', payload: vehiclesData });
+
+            setLoading(false);
+        } catch (err: any) {
+            setError(err.message);
+            dispatch({ type: 'FETCH_VEHICLES_FAILURE', error: error });
+
+            setLoading(false);
+        }
+    };
+
+
+
     useEffect(() => {
-        const fetchVehicles = async () => {
-            dispatch({ type: 'FETCH_VEHICLES_REQUEST' });
-
-            try {
-                const response = await axios.get('/vehicles');
-                const vehiclesData = response.data;
-                setVehicles(vehiclesData);
-                dispatch({ type: 'FETCH_VEHICLES_SUCCESS', payload: vehiclesData });
-
-                setLoading(false);
-            } catch (err: any) {
-                setError(err.message);
-                dispatch({ type: 'FETCH_VEHICLES_FAILURE', error: error });
-
-                setLoading(false);
-            }
-        };
-
         fetchVehicles();
     }, []);
 
-    return { loading, error, vehicles };
+    return { loading, error, vehicles, fetchVehicles };
 };
 
 export default useFetchVehicles;
