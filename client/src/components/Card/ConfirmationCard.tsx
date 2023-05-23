@@ -4,11 +4,12 @@ import useDeleteVehicle from '../../hooks/useDeleteVehicle';
 
 interface ConfirmationCardProps {
     vehicleId: any;
+    vehicleName: string;
     onCancel: () => void;
 }
 
 
-const ConfirmationCard: React.FC<ConfirmationCardProps> = ({ vehicleId, onCancel }) => {
+const ConfirmationCard: React.FC<ConfirmationCardProps> = ({ vehicleId, vehicleName, onCancel }) => {
     const { deleteVehicle } = useDeleteVehicle();
 
     const onDeleteVehicle = () => {
@@ -16,7 +17,7 @@ const ConfirmationCard: React.FC<ConfirmationCardProps> = ({ vehicleId, onCancel
     }
     return (
         <div className="card confirmation">
-            <h4>Are you sure you want to delete this vehicle?</h4>
+            <h4>Are you sure you want to delete {vehicleName}?</h4>
 
             <Button buttonType='primary' onClick={onDeleteVehicle}>{'Delete vehicle'}</Button>
             <Button buttonType='secondary' onClick={onCancel}>{'Cancel'}</Button>

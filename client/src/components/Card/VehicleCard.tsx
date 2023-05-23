@@ -56,7 +56,7 @@ const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle }) => {
             </div>
 
             <Modal isOpen={isEditModalOpen} onClose={closeEditModal} childComponent={<VehicleForm buttonText='Update vehicle' vehicle={vehicle} />} />
-            <Modal isOpen={isDeleteModalOpen} onClose={closeDeleteModal} childComponent={<ConfirmationCard vehicleId={vehicle._id as any} onCancel={handleCancelDeleteModal} />} />
+            <Modal isOpen={isDeleteModalOpen} onClose={closeDeleteModal} childComponent={<ConfirmationCard vehicleId={vehicle._id as any} vehicleName={vehicle.name} onCancel={handleCancelDeleteModal} />} />
 
         </>
     );

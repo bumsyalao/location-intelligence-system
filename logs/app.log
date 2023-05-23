@@ -249,3 +249,5 @@
 2023-05-22T20:37:58.387Z info: Received a GET request for /vehicles/646a6ade46ccef969c73be83
 2023-05-22T20:37:58.398Z info: Received a GET request for /vehicles
 2023-05-22T20:37:58.408Z info: Received a GET request for /vehicles/646a6ade46ccef969c73be83
+2023-05-23T01:45:59.541Z info: Server is running on port 3030!
+2023-05-23T01:45:59.603Z info: Connected to MongoDB

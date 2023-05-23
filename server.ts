@@ -17,7 +17,7 @@ app.use(cors());
 app.use(bodyParser.json({ limit: "1mb" }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const logger = winston.createLogger({
+export const logger = winston.createLogger({
     // Log only if level is less than (meaning more severe) or equal to this
     level: "info",
     // Use timestamp and printf to create a standard log format
@@ -27,11 +27,6 @@ const logger = winston.createLogger({
             (info: any) => `${info.timestamp} ${info.level}: ${info.message}`
         )
     ),
-    // Log to the console and a file
-    transports: [
-        new winston.transports.Console(),
-        new winston.transports.File({ filename: "logs/app.log" }),
-    ],
 });
 
 // MongoDB connection URL

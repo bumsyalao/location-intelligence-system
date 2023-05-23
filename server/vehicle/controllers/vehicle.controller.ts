@@ -1,9 +1,7 @@
 import { Request, Response } from 'express';
 import Vehicle from '../models/vehicle.model';
 
-
 // Create a new vehicle
-
 export const createVehicle = async (req: Request, res: Response) => {
     try {
         const { name, location, status } = req.body;
@@ -39,7 +37,7 @@ export const updateVehicle = async (req: Request, res: Response) => {
         const { name, location, status } = req.body;
 
         const updatedVehicle = await Vehicle.findByIdAndUpdate(
-            
+
             vehicleId,
             {
                 name,
@@ -106,6 +104,7 @@ export const deleteVehicle = async (req: Request, res: Response) => {
 // search vehicles
 
 export const searchVehicle = async (req: Request, res: Response) => {
+    const cacheKey = req.url + req.body.query;
     try {
         const { query } = req.body;
 

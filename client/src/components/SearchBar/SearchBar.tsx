@@ -21,8 +21,7 @@ const SearchBar: React.FC = () => {
         //clear search results if less than 3words and fetch all existing vehicles
 
         if (searchTerm.length < 3) {
-            storage.removeItem('persist:root')
-            clearTimeout(timerId);
+            storage.removeItem('persist:root');
             fetchVehicles();
         }
         else {

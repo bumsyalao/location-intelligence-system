@@ -56,6 +56,7 @@ const VehicleForm: React.FC<VehicleFormProps> = ({ buttonText, vehicle }) => {
     return (
         <div className='vehicle-form'>
             <form onSubmit={handleSubmit(handleFormSubmit)}>
+                <h2>Vehicle details</h2>
                 <div className='form-input'>
                     <label>Name</label>
                     <input type="text" {...register('name')} />

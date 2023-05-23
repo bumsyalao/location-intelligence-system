@@ -4,7 +4,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 
-import vehicleReducer, { VehicleState } from './reducers/vehicleReducer';
+import vehicleReducer, { VehicleState } from './redux/vehicleReducer';
 
 
 export interface RootState {

@@ -3,6 +3,8 @@ import axios from 'axios';
 import Vehicle from '../types';
 import { useDispatch } from 'react-redux';
 
+
+
 const useSearchVehicle = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
@@ -14,7 +16,6 @@ const useSearchVehicle = () => {
         setError(null);
         setVehicles([]);
         dispatch({ type: 'FETCH_VEHICLES_REQUEST' });
-
         try {
             const response = await axios.post('vehicles/search', { query: searchTerm });
             const vehiclesData = response.data;
