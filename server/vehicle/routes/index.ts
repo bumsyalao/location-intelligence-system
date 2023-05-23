@@ -1,4 +1,4 @@
-import { createVehicle, updateVehicle, getVehicleById, getAllVehicles, deleteVehicle } from '../controllers/vehicle.controller';
+import { createVehicle, updateVehicle, getVehicleById, getAllVehicles, deleteVehicle, searchVehicle } from '../controllers/vehicle.controller';
 import { Router } from 'express';
 
 const router = Router();
@@ -18,5 +18,8 @@ router.get('/', getAllVehicles);
 
 //Delete a vehicle by id
 router.delete('/:vehicleId', deleteVehicle);
+
+//search vehicle
+router.post('/search', searchVehicle);
 
 export default router;

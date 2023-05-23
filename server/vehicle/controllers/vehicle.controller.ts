@@ -38,15 +38,13 @@ export const updateVehicle = async (req: Request, res: Response) => {
         const { vehicleId } = req.params;
         const { name, location, status } = req.body;
 
-
-
         const updatedVehicle = await Vehicle.findByIdAndUpdate(
+            
             vehicleId,
             {
                 name,
                 location,
                 status,
-                // updatedBy: decodedToken?.userId, // Save user email to updatedBy field
             },
             { new: true }
         );
@@ -102,5 +100,23 @@ export const deleteVehicle = async (req: Request, res: Response) => {
         res.json({ message: 'Vehicle deleted successfully' });
     } catch (error) {
         res.status(500).json({ error: 'Failed to delete the vehicle' });
+    }
+};
+
+// search vehicles
+
+export const searchVehicle = async (req: Request, res: Response) => {
+    try {
+        const { query } = req.body;
+
+        // Use a regular expression to perform a case-insensitive search
+        const regex = new RegExp(query, 'i');
+
+        // Search for vehicles that match the query
+        const vehicles = await Vehicle.find({ $or: [{ name: regex }, { location: regex }, { status: regex }] });
+
+        res.status(200).json(vehicles);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to search for vehicles' });
     }
 };
