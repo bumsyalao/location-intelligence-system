@@ -9,7 +9,8 @@ export const createVehicle = async (req: Request, res: Response) => {
         // Check if a vehicle with the same fields already exists
         const existingVehicle = await Vehicle.findOne({
             name,
-            status
+            status,
+            location: { lat: location.lat, lng: location.lng }
         });
         if (existingVehicle) {
             return res.status(409).json({ error: 'Vehicle with the same fields already exists' });

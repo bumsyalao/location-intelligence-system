@@ -28,19 +28,11 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, childComponent }) => {
         return null;
     }
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        // Handle form submission logic here
-    };
-
 
 
     return (
         <div className="modal-overlay  active" >
             <div className="modal" ref={modalRef}>
-                {/* <button className="close-button" onClick={onClose}>
-                    X
-                </button> */}
                 {childComponent}
             </div>
         </div>

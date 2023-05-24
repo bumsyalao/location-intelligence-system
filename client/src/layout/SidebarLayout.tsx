@@ -12,7 +12,8 @@ const SidebarLayout = () => {
     const [showSidebar, setShowSidebar] = useState(false);
     const vehichlesData = useSelector((state: RootState) => state.vehicles?.vehicles);
     const [selectedVehicleId, setSelectedVehicleId] = useState(vehichlesData?.[0]?._id);
-    const { fetchVehicle } = useFetchAVehicle(selectedVehicleId);
+    const { fetchVehicle } = useFetchAVehicle();
+
     const handleOnSelectVehicle = (selectVehicleId: any) => {
         setSelectedVehicleId(selectVehicleId);
     }

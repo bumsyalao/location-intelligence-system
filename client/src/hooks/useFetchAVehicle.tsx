@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import Vehicle from '../types';
 
 
-const useFetchAVehicle = (vehicleId: Vehicle['_id']) => {
+const useFetchAVehicle = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
     const [vehicle, setVehicle] = useState<Vehicle>();

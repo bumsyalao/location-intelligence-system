@@ -57,7 +57,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req: Request, res: Response) => {
-    res.status(200).send("Hello World!");
+    res.status(200).send("Welcome to LIS API!");
 })
 app.use('/user', userRoutes);
 app.use('/vehicles', vehicleRoutes);
