@@ -1,0 +1,33 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - cd client
+        - yarn install
+        
+    build:
+      commands:
+        - yarn build
+  artifacts:
+    baseDirectory: client/build
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+
+backend:
+  phases:
+    build:
+      commands:
+        
+    postBuild:
+      commands:
+  artifacts:
+    baseDirectory: server/dist
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*

@@ -3,7 +3,6 @@ import SearchBar from '../components/SearchBar/SearchBar';
 import ListItem from '../components/List/ListItem';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store';
-import useFetchAVehicle from '../hooks/useFetchAVehicle';
 
 import Vehicle from '../types';
 
@@ -11,16 +10,7 @@ const SidebarLayout = () => {
 
     const [showSidebar, setShowSidebar] = useState(false);
     const vehichlesData = useSelector((state: RootState) => state.vehicles?.vehicles);
-    const [selectedVehicleId, setSelectedVehicleId] = useState(vehichlesData?.[0]?._id);
-    const { fetchVehicle } = useFetchAVehicle();
 
-    const handleOnSelectVehicle = (selectVehicleId: any) => {
-        setSelectedVehicleId(selectVehicleId);
-    }
-
-    useEffect(() => {
-        fetchVehicle(selectedVehicleId);
-    }, [selectedVehicleId])
 
     return (
 
@@ -32,7 +22,7 @@ const SidebarLayout = () => {
                 {vehichlesData.length === 0 && <div> No vehicles found</div>}
                 {vehichlesData && vehichlesData?.map((vehicle: Vehicle) => {
                     return <ListItem key={vehicle._id} vehicleId={vehicle._id} text={vehicle.name}
-                        color={vehicle.status === 'active' ? 'green' : 'red'} onSelectVehicle={handleOnSelectVehicle} />;
+                        color={vehicle.status === 'active' ? 'green' : 'red'} />;
                 })
                 }
 
