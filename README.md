@@ -18,6 +18,7 @@ This project is a Location Intelligence System that allows users to track and ma
 - [Back-end API](#Back-endAPI)
 - [Technologies Used](#TechnologiesUsed)
 - [Further Development](#FurtherDevelopment)
+- [Deployment](#Deployment)
 - [Screenshots](#screenshots)
 - [Contributing](#Contributing)
 - [License](#License)
@@ -94,8 +95,13 @@ The back-end API of the Location Intelligence System is built with Node.js and E
 This project is a starting point for developing a Location Intelligence System. There are a number of ways that you can further develop the project, such as:
 
 - Adding additional features, such as the ability to track vehicle speed.
+- Updating the real-time vehicle location.
+- Integrating vehicle tracking system.
 - Integrating with other data sources, such as weather data or traffic data.
 - Developing a mobile app for the Location Intelligence System.
+
+## Deployment
+This project is deployed on Heroku App
 
 > Time spent developing: 1 week average of 3hours per day.
 
@@ -104,10 +110,10 @@ This project is a starting point for developing a Location Intelligence System. 
 Contributions are welcome! If you find any issues or have suggestions for improvement, please open an issue or submit a pull request.
 
 ## Screenshots
-![1](https://res.cloudinary.com/dcpfdxsly/image/upload/v1684810037/Screen_Shot_2023-05-23_at_6.39.55_AM_v6msub.png)
-![2](https://res.cloudinary.com/dcpfdxsly/image/upload/v1684810037/Screen_Shot_2023-05-23_at_6.41.02_AM_k5t4pa.png)
-![3](https://res.cloudinary.com/dcpfdxsly/image/upload/v1684810037/Screen_Shot_2023-05-23_at_6.44.00_AM_cgdszl.png)
-![4](https://res.cloudinary.com/dcpfdxsly/image/upload/v1684812374/Screen_Shot_2023-05-23_at_7.25.42_AM_r2vpef.png)
+![1](https://res.cloudinary.com/dcpfdxsly/image/upload/v1689812915/Screen_Shot_2023-07-20_at_4.26.10_AM_sl7p3k.png)
+![2](https://res.cloudinary.com/dcpfdxsly/image/upload/v1689812915/Screen_Shot_2023-07-20_at_4.25.57_AM_xtivkr.png)
+![3](https://res.cloudinary.com/dcpfdxsly/image/upload/v1689812915/Screen_Shot_2023-07-20_at_4.27.04_AM_entgb9.png)
+![4](https://res.cloudinary.com/dcpfdxsly/image/upload/v1689812915/Screen_Shot_2023-07-20_at_4.27.44_AM_nvzfry.png)
 
 ## License
 
