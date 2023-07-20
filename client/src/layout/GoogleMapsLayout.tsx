@@ -40,7 +40,7 @@ const GoogleMapsLayout = () => {
             <GoogleMap
                 mapContainerStyle={{ height: '100vh', width: '100vw' }}
                 center={mapCenter}
-                zoom={10}
+                zoom={12}
                 onClick={handleLocationChange}
             >
                 {vehicleData.length > 0 &&
