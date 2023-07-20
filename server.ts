@@ -27,6 +27,9 @@ export const logger = winston.createLogger({
             (info: any) => `${info.timestamp} ${info.level}: ${info.message}`
         )
     ),
+    transports: [
+        new winston.transports.Console()
+    ]
 });
 
 // MongoDB connection URL
@@ -50,11 +53,11 @@ mongoose.connect(mongoURL, {
 
 // Set up routes and middleware here
 
-app.use((req, res, next) => {
-    // Log an info message for each incoming request
-    logger.info(`Received a ${req.method} request for ${req.url}`);
-    next();
-});
+// app.use((req, res, next) => {
+//     // // Log an info message for each incoming request
+//     // logger.info(`Received a ${req.method} request for ${req.url}`);
+//     next();
+// });
 
 app.get("/", (req: Request, res: Response) => {
     res.status(200).send("Welcome to LIS API!");

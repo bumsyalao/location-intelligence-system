@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "start-dev": "nodemon --exec 'ts-node --project tsconfig.json' ./server.ts",
-    "start": "ts-node --project tsconfig.json ./server.ts"
+    "start": "ts-node --project tsconfig.json ./server.ts",
+    "build": "tsc"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
