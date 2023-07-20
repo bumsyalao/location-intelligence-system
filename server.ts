@@ -11,7 +11,7 @@ const mongoose = require('mongoose');
 dotenv.config();
 
 const app = express();
-const port = 3030;
+const port = process.env.PORT || 3030;
 
 app.use(cors());
 app.use(bodyParser.json({ limit: "1mb" }));
@@ -51,13 +51,6 @@ mongoose.connect(mongoURL, {
 
 
 
-// Set up routes and middleware here
-
-// app.use((req, res, next) => {
-//     // // Log an info message for each incoming request
-//     // logger.info(`Received a ${req.method} request for ${req.url}`);
-//     next();
-// });
 
 app.get("/", (req: Request, res: Response) => {
     res.status(200).send("Welcome to LIS API!");
