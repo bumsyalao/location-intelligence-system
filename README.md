@@ -101,7 +101,7 @@ This project is a starting point for developing a Location Intelligence System. 
 - Developing a mobile app for the Location Intelligence System.
 
 ## Deployment
-This project is deployed on Heroku App
+This project's server is deployed on Heroku App and client is deployed on AWS Amplify
 
 > Time spent developing: 1 week average of 3hours per day.
 

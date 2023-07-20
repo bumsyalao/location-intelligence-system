@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3030",
+  "proxy": "https://location-intelligence-system-e41499490cc2.herokuapp.com",
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@hookform/resolvers": "^3.1.0",
