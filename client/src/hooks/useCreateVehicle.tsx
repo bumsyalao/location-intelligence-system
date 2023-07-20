@@ -18,7 +18,7 @@ const useCreateVehicle = () => {
         dispatch({ type: 'CREATE_VEHICLE_REQUEST' });
         try {
             // Make the API call to create a vehicle
-            await axios.post('/vehicles/create', data);
+            await axios.post('https://location-intelligence-system-e41499490cc2.herokuapp.com/vehicles/create', data);
             // Dispatch the action to update the Redux store
             dispatch({ type: 'CREATE_VEHICLE_SUCCESS', payload: data });
             setSuccess(true);

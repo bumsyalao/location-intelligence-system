@@ -15,7 +15,7 @@ const useFetchVehicles = () => {
         dispatch({ type: 'FETCH_VEHICLES_REQUEST' });
 
         try {
-            const response = await axios.get('/vehicles');
+            const response = await axios.get('https://location-intelligence-system-e41499490cc2.herokuapp.com/vehicles');
             const vehiclesData = response.data;
             setVehicles(vehiclesData);
             dispatch({ type: 'FETCH_VEHICLES_SUCCESS', payload: vehiclesData });

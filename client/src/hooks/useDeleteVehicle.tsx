@@ -15,7 +15,7 @@ const useDeleteVehicle = () => {
         setError(null);
 
         try {
-            await axios.delete(`vehicles/${vehicleId}`);
+            await axios.delete(`https://location-intelligence-system-e41499490cc2.herokuapp.com/vehicles/${vehicleId}`);
             fetchVehicles(); // Fetch vehicles again after successful deletion
             toast.info('Successfully deleted vehicle');
         } catch (err: any) {

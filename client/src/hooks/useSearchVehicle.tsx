@@ -17,7 +17,7 @@ const useSearchVehicle = () => {
         setVehicles([]);
         dispatch({ type: 'FETCH_VEHICLES_REQUEST' });
         try {
-            const response = await axios.post('vehicles/search', { query: searchTerm });
+            const response = await axios.post('https://location-intelligence-system-e41499490cc2.herokuapp.com/vehicles/search', { query: searchTerm });
             const vehiclesData = response.data;
 
             setVehicles(response.data);

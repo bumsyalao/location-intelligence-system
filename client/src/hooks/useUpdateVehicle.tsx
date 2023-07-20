@@ -16,7 +16,7 @@ const useUpdateVehicle = () => {
         setError(null);
         dispatch({ type: 'UPDATE_VEHICLE_REQUEST' });
         try {
-            const response = await axios.put(`vehicles/update/${vehicleId}`, updatedVehicle);
+            const response = await axios.put(`https://location-intelligence-system-e41499490cc2.herokuapp.com/vehicles/update/${vehicleId}`, updatedVehicle);
             dispatch({ type: 'UPDATE_VEHICLE_SUCCESS', payload: response.data });
             setLoading(false);
             fetchVehicles();
