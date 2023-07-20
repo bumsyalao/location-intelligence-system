@@ -1,4 +1,5 @@
-import React, { Children, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
+
 
 interface ModalProps {
     isOpen: boolean;
@@ -23,17 +24,14 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, childComponent }) => {
         };
     }, [onClose]);
 
-
     if (!isOpen) {
         return null;
     }
 
-
-
     return (
-        <div className="modal-overlay  active" >
+        <div className="modal-overlay active">
             <div className="modal" ref={modalRef}>
-                {childComponent}
+                {React.cloneElement(childComponent as React.ReactElement<any>, { onClose })}
             </div>
         </div>
     );

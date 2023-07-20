@@ -11,6 +11,7 @@ interface VehicleFormProps {
     onSubmit?: SubmitHandler<Vehicle>;
     vehicle?: Vehicle;
     buttonText: string;
+    onClose?: () => void;
 }
 
 const schema = yup.object().shape({
@@ -22,7 +23,7 @@ const schema = yup.object().shape({
     status: yup.string().required('Status is required'),
 });
 
-const VehicleForm: React.FC<VehicleFormProps> = ({ buttonText, vehicle }) => {
+const VehicleForm: React.FC<VehicleFormProps> = ({ buttonText, vehicle, onClose }) => {
 
     const { createVehicle } = useCreateVehicle();
     const { updateVehicle } = useUpdateVehicle();
@@ -55,6 +56,7 @@ const VehicleForm: React.FC<VehicleFormProps> = ({ buttonText, vehicle }) => {
 
     return (
         <div className='vehicle-form'>
+
             <form onSubmit={handleSubmit(handleFormSubmit)}>
                 <h2>Vehicle details</h2>
                 <div className='form-input'>
@@ -86,8 +88,9 @@ const VehicleForm: React.FC<VehicleFormProps> = ({ buttonText, vehicle }) => {
                     </select>
                     {errors.status && <p>{errors.status.message}</p>}
                 </div>
-
                 <Button type="submit" buttonType="primary" >{buttonText}</Button>
+                <Button buttonType="primary" onClick={onClose}>Cancel</Button>
+
             </form>
         </div>
     );

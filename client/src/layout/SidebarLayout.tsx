@@ -19,9 +19,9 @@ const SidebarLayout = () => {
                 <SearchBar />
             </div>
             <div className='hideOnMobile vehicle-list'>
-                {vehichlesData.length === 0 && <div> No vehicles found</div>}
+                {vehichlesData.length === 0 && <div className="center"> No vehicles found</div>}
                 {vehichlesData && vehichlesData?.map((vehicle: Vehicle) => {
-                    return <ListItem key={vehicle._id} vehicleId={vehicle._id} text={vehicle.name}
+                    return <ListItem key={vehicle._id} vehicle={vehicle} text={vehicle.name}
                         color={vehicle.status === 'active' ? 'green' : 'red'} />;
                 })
                 }

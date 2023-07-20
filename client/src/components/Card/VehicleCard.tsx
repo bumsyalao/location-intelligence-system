@@ -1,63 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Vehicle from '../../types';
-import Button from '../Button/Button';
-import Modal from '../Modal/Modal';
-import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
-import VehicleForm from '../Forms/VehicleForm';
-import ConfirmationCard from './ConfirmationCard';
 
 interface VehicleCardProps {
     vehicle: Vehicle;
 }
-
+const GOOGLE_MAP_API_KEY = process.env.REACT_APP_GOOGLE_MAP_API_KEY || '';
 
 const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle }) => {
-    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [locationName, setLocationName] = useState<string>('');
 
-    const openEditModal = () => {
-        setIsEditModalOpen(true);
-    };
+    useEffect(() => {
+        // Fetch the location name from Google Maps API using latitude and longitude
+        const fetchLocationName = async () => {
+            try {
+                const response = await fetch(
+                    `https://maps.googleapis.com/maps/api/geocode/json?latlng=${vehicle.location.lat},${vehicle.location.lng}&key=${GOOGLE_MAP_API_KEY}`
+                );
 
-    const closeEditModal = () => {
-        setIsEditModalOpen(false);
-    };
+                if (response.ok) {
+                    const data = await response.json();
+                    const address =
+                        data.results[0]?.formatted_address || 'Location not found';
+                    setLocationName(address);
+                } else {
+                    setLocationName('Location not found');
+                }
+            } catch (error) {
+                setLocationName('Location not found');
+            }
+        };
 
-    const onClickEditVehicle = () => {
-        openEditModal();
-    }
-
-    const openDeleteModal = () => {
-        setIsDeleteModalOpen(true);
-    };
-
-    const closeDeleteModal = () => {
-        setIsDeleteModalOpen(false);
-    };
-
-    const onClickDeleteVehicle = () => {
-        openDeleteModal();
-    }
-
-    const handleCancelDeleteModal = () => {
-        setIsDeleteModalOpen(false);
-    };
+        fetchLocationName();
+    }, [vehicle.location.lat, vehicle.location.lng]);
 
     return (
         <>
-            <div className="card">
-                <div className="card-icon">
-                    <Button buttonType='icon' onClick={onClickEditVehicle}><AiOutlineEdit /></Button>
-                    <Button buttonType='icon' onClick={onClickDeleteVehicle}><AiOutlineDelete /></Button>
-                </div>
-                <h4>{vehicle.name} {' '}<span className="dot" style={{ backgroundColor: `${vehicle.status === 'active' ? 'green' : 'red'}` }} /></h4>
+            <div className='card'>
+                <h4>
+                    {vehicle.name} <span className='dot' style={{ backgroundColor: `${vehicle.status === 'active' ? 'green' : 'red'}` }} />
+                </h4>
                 <span>Lat: {vehicle.location.lat} </span>
                 <span>Lng: {vehicle.location.lng} </span>
+                <p>Address: {locationName}</p>
             </div>
-
-            <Modal isOpen={isEditModalOpen} onClose={closeEditModal} childComponent={<VehicleForm buttonText='Update vehicle' vehicle={vehicle} />} />
-            <Modal isOpen={isDeleteModalOpen} onClose={closeDeleteModal} childComponent={<ConfirmationCard vehicleId={vehicle._id as any} vehicleName={vehicle.name} onCancel={handleCancelDeleteModal} />} />
-
         </>
     );
 };

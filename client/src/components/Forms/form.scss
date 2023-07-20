@@ -12,6 +12,7 @@
     align-items: center;
     height: 100vh;
 
+
     form {
         width: 400px;
         padding: 50px;
@@ -50,10 +51,12 @@
             font-size: 12px;
         }
 
+
     }
 
     button {
         float: right;
+        margin: 5px;
         border-radius: 0px;
         border: none;
         box-shadow: 1px 3px 5px #8888;
@@ -61,5 +64,8 @@
         &:hover {
             box-shadow: 1px 3px 5px #02020288;
         }
+
+
     }
+
 }

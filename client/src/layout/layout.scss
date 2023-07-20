@@ -24,6 +24,10 @@ $primary-color: #3333FF;
     .sidebar-header {
         padding: 20px 10px;
     }
+
+    .vehicle-form form {
+        width: 250px;
+    }
 }
 
 
@@ -61,4 +65,8 @@ $primary-color: #3333FF;
     height: 100%;
     overflow: scroll;
     overflow-y: auto;
+
+    .center {
+        text-align: center;
+    }
 }

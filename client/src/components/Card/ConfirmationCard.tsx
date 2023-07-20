@@ -16,12 +16,12 @@ const ConfirmationCard: React.FC<ConfirmationCardProps> = ({ vehicleId, vehicleN
         deleteVehicle(vehicleId);
     }
     return (
-        <div className="card confirmation">
+        <div className="card">
             <h4>Are you sure you want to delete {vehicleName}?</h4>
-
-            <Button buttonType='primary' onClick={onDeleteVehicle}>{'Delete vehicle'}</Button>
-            <Button buttonType='secondary' onClick={onCancel}>{'Cancel'}</Button>
-
+            <div className='confirmation-btns'>
+                <Button buttonType='primary' onClick={onDeleteVehicle}>{'Delete vehicle'}</Button>
+                <Button buttonType='secondary' onClick={onCancel}>{'Cancel'}</Button>
+            </div>
         </div>
 
     );

@@ -56,7 +56,7 @@ const SearchBar: React.FC = () => {
                 </div>
                 <Button type='submit' buttonType='primary' onClick={openModal} ><AiOutlinePlus /></Button>
             </div>
-            <Modal isOpen={isModalOpen} onClose={closeModal} childComponent={<VehicleForm buttonText='Create new vehicle' />} />
+            <Modal isOpen={isModalOpen} onClose={closeModal} childComponent={<VehicleForm buttonText='Create new vehicle' onClose={closeModal} />} />
         </>
     );
 };
