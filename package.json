@@ -5,7 +5,7 @@
   "author": "Ruth Alao",
   "license": "MIT",
   "scripts": {
-    "start-dev": "nodemon --exec 'ts-node --project tsconfig.json' ./server.ts"
+    "start": "nodemon --exec 'ts-node --project tsconfig.json' ./server.ts"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
